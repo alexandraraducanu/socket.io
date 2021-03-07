@@ -9,15 +9,35 @@
 
   <canvas class="whiteboard" ></canvas>
 
-  <div class="colors">
+  <!-- <div class="colors">
     <div class="color black"></div>
     <div class="color red"></div>
     <div class="color green"></div>
     <div class="color blue"></div>
     <div class="color yellow"></div>
+  </div> -->
+
+  <!-- adding a HSL color selector -->
+
+
+  
+
+
+
+  <div class="slidecontainer">
+    <input type="range" min="1" max="360" value="50" class="slider" id="Hue">
+    <input type="range" min="1" max="100" value="50" class="slider" id="Saturation">
+    <input type="range" min="1" max="100" value="50" class="slider" id="Luminosity">
+    <input type="range" min="1" max="100" value="50" class="slider" id="Opacity">
   </div>
 
+
   <script src="/socket.io/socket.io.js"></script>
+  <script src="/w3color.js"></script>
   <script src="/main.js"></script>
+ 
+
+
+
 </body>
 </html>

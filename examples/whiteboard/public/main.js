@@ -12,6 +12,36 @@
   };
   var drawing = false;
 
+
+  var sliderHue = document.getElementById("Hue");
+  var sliderSaturation = document.getElementById("Saturation");
+  var sliderLuminosity = document.getElementById("Luminosity");
+
+  var HueValue = 1;
+  var SaturationValue = 100;
+  var LuminosityValue = 50;
+  
+
+  sliderHue.oninput = function() {
+    HueValue = this.value;
+    var colorArray = hslToRgb(HueValue, SaturationValue, LuminosityValue);
+    current.color = rgb(colorArray[0], colorArray[1],colorArray[2]);
+    console.log(current.color); 
+  }
+
+  sliderSaturation.oninput = function() {
+    SaturationValue = this.value;
+    current.color = hslToRgb(HueValue, SaturationValue, LuminosityValue);
+    console.log(SaturationValue);
+  }
+
+  sliderLuminosity.oninput = function() {
+    LuminosityValue = this.value;
+    current.color = hslToRgb(HueValue, SaturationValue, LuminosityValue);
+    console.log(LuminosityValue);
+    
+  }
+
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
   canvas.addEventListener('mouseout', onMouseUp, false);
@@ -31,6 +61,32 @@
 
   window.addEventListener('resize', onResize, false);
   onResize();
+
+// function that defines the hsl parameters 
+  function hslToRgb(h, s, l){
+    var r, g, b;
+
+    if(s == 0){
+        r = g = b = l; // achromatic
+    }else{
+        var hue2rgb = function hue2rgb(p, q, t){
+            if(t < 0) t += 1;
+            if(t > 1) t -= 1;
+            if(t < 1/6) return p + (q - p) * 6 * t;
+            if(t < 1/2) return q;
+            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+        }
+
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+    }
+
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
 
 
   function drawLine(x0, y0, x1, y1, color, emit){
@@ -98,9 +154,12 @@
   }
 
   // make the canvas fill its parent
-  function onResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+ function onResize() {
+   canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+ }
+
+
+
 
 })();

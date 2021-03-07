@@ -25,6 +25,7 @@ html, body {
   right: 0;
   bottom: 0;
   top: 0;
+  outline: black;
 }
 
 .colors {
@@ -37,8 +38,29 @@ html, body {
   width: 48px;
 }
 
+.slidecontainer {
+  border-radius: 4px;
+  height: 20px;
+  width: 80%;
+  position: absolute;
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  border-radius: 15px;
+  background: #4CAF50;
+  width: 50%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
 .color.black { background-color: black; }
-.color.red { background-color: red; }
+.color.red { background-color: rgb(11, 122, 94); }
 .color.green { background-color: green; }
 .color.blue { background-color: blue; }
 .color.yellow { background-color: yellow; }
